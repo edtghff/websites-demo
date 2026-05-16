@@ -54,7 +54,7 @@ export function Header() {
             <span className={brandMarkClass}>{BRAND_NAME}</span>
           </Link>
 
-          <nav className="hidden items-center justify-center gap-10 md:flex">
+          <nav className="col-start-2 hidden items-center justify-center gap-10 md:flex">
             {nav.map((l) => (
               <Link
                 key={l.href}
@@ -66,7 +66,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center justify-end gap-4 justify-self-end">
+          <div className="col-start-3 flex items-center justify-end gap-4 justify-self-end">
             <LangSwitcher className="hidden md:inline-flex" />
             <a
               href={`https://instagram.com/${INSTAGRAM_HANDLE}`}
