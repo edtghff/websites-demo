@@ -20,16 +20,18 @@ const LanguageContext = createContext<{
 
 const STORAGE_KEY = "azul-locale";
 
+function readStoredLocale(): Locale {
+  if (typeof window === "undefined") return "az";
+  const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
+  return stored && locales.some((l) => l.code === stored) ? stored : "az";
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("az");
+  const [locale, setLocaleState] = useState<Locale>(readStoredLocale);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (stored && locales.some((l) => l.code === stored)) {
-      setLocaleState(stored);
-      document.documentElement.lang = stored;
-    }
-  }, []);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);
