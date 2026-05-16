@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { LanguageProvider } from "@/components/providers/language-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileBar } from "@/components/layout/mobile-bar";
@@ -22,7 +23,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: `${BRAND_NAME} | Niche Luxury Tees — Bakı`,
   description:
-    "Azul and house music — niche luxury t-shirts in Bakı. Quiet, elegant streetwear with an old-money feel.",
+    "Niche Club — niche luxury t-shirts in Bakı. Quiet, elegant streetwear with a refined feel.",
   openGraph: {
     title: BRAND_NAME,
     description: "Niche luxury · Bakı",
@@ -46,12 +47,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-cream text-ink antialiased" suppressHydrationWarning>
-        <Header />
-        <main className="pb-[calc(4.75rem+env(safe-area-inset-bottom))] md:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <MobileBar />
+        <LanguageProvider>
+          <Header />
+          <main className="pb-[calc(4.75rem+env(safe-area-inset-bottom))] md:pb-0">
+            {children}
+          </main>
+          <Footer />
+          <MobileBar />
+        </LanguageProvider>
       </body>
     </html>
   );

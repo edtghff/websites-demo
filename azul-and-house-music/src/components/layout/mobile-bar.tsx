@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import { Home, LayoutGrid, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { WHATSAPP_NUMBER } from "@/lib/data";
+import { useLanguage } from "@/components/providers/language-provider";
 
 export function MobileBar() {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   const isHome = pathname === "/";
   const isCatalog =
@@ -19,31 +21,31 @@ export function MobileBar() {
         <Link
           href="/"
           className={cn(
-            "flex min-h-[52px] flex-1 flex-col items-center justify-center gap-1 rounded-lg py-2",
+            "flex min-h-[52px] flex-1 flex-col items-center justify-center gap-1 rounded-lg py-2 transition-colors duration-300",
             isHome ? "bg-stone-900/5 text-ink" : "text-stone"
           )}
         >
           <Home className="h-5 w-5" strokeWidth={isHome ? 2 : 1.5} />
-          <span className="text-[10px] uppercase tracking-wide">Ana</span>
+          <span className="text-[10px] uppercase tracking-wide">{t.mobile.home}</span>
         </Link>
         <Link
           href="/catalog"
           className={cn(
-            "flex min-h-[52px] flex-1 flex-col items-center justify-center gap-1 rounded-lg py-2",
+            "flex min-h-[52px] flex-1 flex-col items-center justify-center gap-1 rounded-lg py-2 transition-colors duration-300",
             isCatalog ? "bg-stone-900/5 text-ink" : "text-stone"
           )}
         >
           <LayoutGrid className="h-5 w-5" strokeWidth={isCatalog ? 2 : 1.5} />
-          <span className="text-[10px] uppercase tracking-wide">Kataloq</span>
+          <span className="text-[10px] uppercase tracking-wide">{t.mobile.catalog}</span>
         </Link>
         <a
           href={`https://wa.me/${WHATSAPP_NUMBER}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex min-h-[52px] flex-1 flex-col items-center justify-center gap-1 rounded-lg py-2 text-[#1a3d2e]"
+          className="flex min-h-[52px] flex-1 flex-col items-center justify-center gap-1 rounded-lg py-2 text-[#1a3d2e] transition-opacity hover:opacity-80"
         >
           <MessageCircle className="h-5 w-5" />
-          <span className="text-[10px] uppercase tracking-wide">Sifariş</span>
+          <span className="text-[10px] uppercase tracking-wide">{t.mobile.order}</span>
         </a>
       </div>
     </nav>

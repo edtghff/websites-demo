@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return { title: "Məhsul tapılmadı" };
-  return { title: `${product.name} | Azul and house music` };
+  return { title: "Azul and house music. Tee | Niche Club" };
 }
 
 export default async function ProductPage({ params }: Props) {
